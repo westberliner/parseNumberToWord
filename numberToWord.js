@@ -1,6 +1,6 @@
 'use strict';
 
-function numberInWords(num) {
+function numberInWord(num) {
   var number = num,
       numPackage = [],
       numWordPackage = [],
@@ -88,7 +88,7 @@ function numberInWords(num) {
   }
   function pushNumbersIntoPackage() {
     var i = 0;
-    $.each(number,function(k,v) {
+    each(number,function(k,v) {
       if(numPackage[i] === undefined) {
         numPackage[i] = [];
       }
@@ -100,7 +100,7 @@ function numberInWords(num) {
     });
   }
   function createOutputThreeDigitsOutput() {
-    $.each(numPackage, function(k,v) {
+    each(numPackage, function(k) {
       numPackage[k].reverse();
       if(numPackage[k].length === 1) {
         numWordPackage[k] = firstDigits[numPackage[k][0]];
@@ -131,7 +131,7 @@ function numberInWords(num) {
     return firstDigits[n[0]]+furtherDigits[0]+createTwoDigitsWord(lastTwoDigits);
   }
   function createCompleteOutput() {
-    $.each(numWordPackage, function(k,v) {
+    each(numWordPackage, function(k) {
       if(k === 0) {
         output = numWordPackage[k] + output;
       } else {
@@ -150,5 +150,34 @@ function numberInWords(num) {
       return 'e'+furtherDigits[k];
     }
     return furtherDigitsPlural[k];
+  }
+  /** copied from jquery library **/
+  function each(object, callback, args) {
+    var name, i = 0,
+      length = object.length;
+
+    if (args) {
+      if (length === undefined) {
+        for (name in object) {
+          if (callback.apply(object[name], args) === false) { break; }
+        }
+      } else {
+        for (; i < length;) {
+          if (callback.apply(object[i++], args) === false) { break; }
+        }
+      }
+      // A special, fast, case for the most common use of each
+    } else {
+      if (length === undefined) {
+        for (name in object) {
+          if (callback.call(object[name], name, object[name]) === false) { break; }
+        }
+      } else {
+        for (var value = object[0]; i < length && callback.call(value, i, value) !== false; value = object[++i]) {
+
+        }
+      }
+    }
+    return object;
   }
 }
