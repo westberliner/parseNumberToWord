@@ -68,7 +68,6 @@ function numberInWords(num) {
     ];
   this.parse = function parse() {
     if(isNaN(parseInt(number))) {
-      console.log(output);
       return output;
     }
     var packageCount = splitNumber();
@@ -77,7 +76,6 @@ function numberInWords(num) {
     pushNumbersIntoPackage();
     createOutputThreeDigitsOutput();
     createCompleteOutput();
-    console.log(output);
     return output;
   };
   function splitNumber() {
