@@ -1,3 +1,4 @@
+/*jshint unused:false*/
 'use strict';
 
 function numberInWord(num) {
@@ -132,7 +133,7 @@ function numberInWord(num) {
   }
   function createCompleteOutput() {
     each(numWordPackage, function(k) {
-      if(k === 0) {
+      if(k === 0 && numWordPackage[k] !== furtherDigits[0]) {
         output = numWordPackage[k] + output;
       } else {
         if(k+1 === numWordPackage.length) {
